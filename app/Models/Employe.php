@@ -13,7 +13,7 @@ class Employe extends Model{
         'nom',
         'prenom',
         'role',
-        'statut'
+        //'statut'
         ];
 }
 
