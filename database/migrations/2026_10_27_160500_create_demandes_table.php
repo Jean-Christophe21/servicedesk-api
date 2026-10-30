@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('demande', function (Blueprint $table) {
+        Schema::create('demandes', function (Blueprint $table) {
             $table->id();
-            $table->string('titre', 100);
+            $table->string('title', 100);
             $table->string('description', 500);
-            $table->enum('statut', ['ouvert', 'en_cours', 'ferme', 'resolu']);
+            $table->enum('status', ['ouvert', 'en_cours', 'ferme', 'resolu']);
+            $table->foreignId('technicien_id')->nullable()->constrained('employes');
+            $table->foreignId('employe_id')->constrained('employes');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('demande');
+        Schema::dropIfExists('demandes');
     }
 };
