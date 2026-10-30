@@ -28,3 +28,4 @@ Thumbs.db
 .idea/
 .scribe
 public/vendor
+resources/views/scribe/index.blade.php
