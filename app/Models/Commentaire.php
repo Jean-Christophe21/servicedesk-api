@@ -3,16 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Commentaire
+class Commentaire extends Model
 {
     use HasFactory;
 
-    protected array $fillable = [
+    protected $fillable = [
         'id',
-        'contenu',
+        'content',
         'employe_id',
         'demande_id',
-        'modified'
+        'modified',
     ];
+
+    public function employe()
+    {
+        return $this->belongsTo(Employe::class);
+    }
+
+    public function demande()
+    {
+        return $this->belongsTo(Demande::class);
+    }
 }
