@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('commentaire', function (Blueprint $table) {
             $table->id();
             $table->string('contenu');
-            $table->integer('employe_id');
-            $table->integer('demande_id');
+            $table->foreignId('employe_id')->constrained('employe');
+            $table->foreignId('demande_id')->constrained('demande')->onDelete('cascade');
             $table->boolean('modified')->default(false);
             $table->timestamps();
         });
