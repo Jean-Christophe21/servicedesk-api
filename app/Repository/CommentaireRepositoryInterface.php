@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\DTO\CommentaireDTO;
 use App\DTO\CommentaireModificationDTO;
 
-interface CommentaireServiceInterface
+interface CommentaireRepositoryInterface
 {
     public function getDemandeCommentaires(int $demande_id);
 

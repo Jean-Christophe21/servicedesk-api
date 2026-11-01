@@ -9,7 +9,7 @@ use App\DTO\DemandeTechnicianDTO;
 
 interface DemandeRepositoryInterface
 {
-    public function getAllDemande();
+    public function getAllDemande(int $employeId);
     public function createDemande(DemandeDTO $demande);
 
     public function modifyDemande(int $demandeId, DemandeModificationDTO $demandeDTO);

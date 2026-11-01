@@ -6,15 +6,16 @@ use App\DTO\DemandeDTO;
 use App\DTO\DemandeModificationDTO;
 use App\DTO\DemandeStatusDTO;
 use App\DTO\DemandeTechnicianDTO;
+use App\DTO\EmployeIdDTO;
 use App\Models\Demande;
 use App\Models\Employe;
 use Illuminate\Support\Collection;
 
 class DemandeRepository implements DemandeRepositoryInterface
 {
-    public function getAllDemande(): Collection
+    public function getAllDemande(int $employeId): Collection
     {
-        return Demande::all();
+        return Demande::where('employe_id', $employeId)->get();
     }
 
     public function createDemande(DemandeDTO $demande): Demande
@@ -58,6 +59,7 @@ class DemandeRepository implements DemandeRepositoryInterface
         $demande = Demande::find($idDemande);
         if ($employe && $demande) {
             $demande->technicien_id = $demandeTechnicianDTO->technicianId;
+            $demande->status = 'en_cours';
             $demande->save();
 
             return $demande;
