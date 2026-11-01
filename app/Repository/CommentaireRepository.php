@@ -8,7 +8,7 @@ use App\Models\Commentaire;
 use App\Models\Demande;
 use Illuminate\Support\Collection;
 
-class CommentaireService implements CommentaireServiceInterface
+class CommentaireRepository implements CommentaireRepositoryInterface
 {
     public function getDemandeCommentaires(int $demande_id): Collection
     {
@@ -42,12 +42,18 @@ class CommentaireService implements CommentaireServiceInterface
     {
         $commentaire = Commentaire::find($id);
         if ($commentaire) {
-            $commentaireModificationDTO->modified = true;
             $commentaire->update($commentaireModificationDTO->toArray());
+            $commentaire->modified = true;
+            $commentaire->update([
+                'modified' => true
+            ]);
+
 
             return $commentaire->fresh();
         }
 
         return null;
     }
+
+
 }
