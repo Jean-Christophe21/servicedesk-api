@@ -6,6 +6,7 @@ use App\DTO\DemandeDTO;
 use App\DTO\DemandeModificationDTO;
 use App\DTO\DemandeStatusDTO;
 use App\DTO\DemandeTechnicianDTO;
+use App\DTO\EmployeIdDTO;
 use App\Repository\DemandeRepositoryInterface;
 
 class DemandeService implements DemandeServiceInterface
@@ -14,9 +15,9 @@ class DemandeService implements DemandeServiceInterface
         private readonly DemandeRepositoryInterface $demandeRepository
     ) {}
 
-    public function getAllDemandes()
+    public function getAllDemandes(int $employeId)
     {
-        return $this->demandeRepository->getAllDemande();
+        return $this->demandeRepository->getAllDemande($employeId);
     }
 
     public function createEmployeDemande(DemandeDTO $demande)
