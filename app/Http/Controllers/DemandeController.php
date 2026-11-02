@@ -6,10 +6,12 @@ use App\DTO\DemandeDTO;
 use App\DTO\DemandeModificationDTO;
 use App\DTO\DemandeStatusDTO;
 use App\DTO\DemandeTechnicianDTO;
+use App\DTO\EmployeIdDTO;
 use App\Http\Requests\DemandeModificationRequest;
 use App\Http\Requests\DemandeRequest;
 use App\Http\Requests\DemandeStatusRequest;
 use App\Http\Requests\DemandeTechnicianRequest;
+use App\Http\Requests\EmployeIdRequest;
 use App\Service\DemandeServiceInterface;
 
 class DemandeController extends Controller
@@ -18,11 +20,13 @@ class DemandeController extends Controller
         private readonly DemandeServiceInterface $demandeService
     ) {}
 
-    public function index()
+    public function index(int $employeId)  // à masquer une fois qu'on implémente l'authentification des utilisateurs
     {
+//        $employeId = EmployeIdDTO::fromRequest($employeIdRequest);
+        $data = $this->demandeService->getAllDemandes($employeId);
         return response()->json([
             'message' => 'Demandes retrieved successfully',
-            'data' => $this->demandeService->getAllDemandes(),
+            'data' => $data,
         ]);
     }
 

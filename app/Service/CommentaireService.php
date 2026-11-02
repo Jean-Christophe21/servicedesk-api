@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\DTO\CommentaireDTO;
 use App\DTO\CommentaireModificationDTO;
-use App\Repository\CommentaireServiceInterface as CommentaireRepositoryInterface;
+use App\Repository\CommentaireRepositoryInterface as CommentaireRepositoryInterface;
 
 class CommentaireService implements CommentaireServiceInterface
 {

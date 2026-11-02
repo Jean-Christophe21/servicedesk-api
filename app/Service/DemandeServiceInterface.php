@@ -6,11 +6,12 @@ use App\DTO\DemandeDTO;
 use App\DTO\DemandeModificationDTO;
 use App\DTO\DemandeStatusDTO;
 use App\DTO\DemandeTechnicianDTO;
+use App\DTO\EmployeIdDTO;
 use App\Http\Requests\DemandeModificationRequest;
 
 interface DemandeServiceInterface
 {
-    public function getAllDemandes();
+    public function getAllDemandes(int $employeId);
 
     public function createEmployeDemande(DemandeDTO $demande);
 

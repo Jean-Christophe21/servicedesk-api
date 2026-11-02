@@ -10,7 +10,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('v1')->group(function () {
-    Route::get('demandes', [DemandeController::class, 'index']);
+    Route::get('user/{employeId}/demandes', [DemandeController::class, 'index']);                                         // à revoir après ajout des la gestion utilisateur
+
     Route::get('demandes/{id}', [DemandeController::class, 'show']);
     Route::post('demandes', [DemandeController::class, 'create']);
     Route::match(['put', 'patch'], 'demandes/{id}', [DemandeController::class, 'update']);
@@ -21,5 +22,8 @@ Route::prefix('v1')->group(function () {
     Route::post('demandes/{demandeId}/comments', [CommentaireController::class, 'createComment']);
     Route::match(['put', 'patch'], 'demandes/{demandeId}/comments/{commentaireId}', [CommentaireController::class, 'updateComment']);
     Route::get('demandes/{demandeId}/comments/{commentaireId}', [CommentaireController::class, 'getComment']);
+
+    // Route pour récupérer les données du dashboard
+    Route::get('dashboard/infos', [\App\Http\Controllers\DashboardInfosController::class, 'get']);
 });
 
